@@ -1,4 +1,4 @@
-# Docker container demonstrating samba active directory domain controller support
+# Docker container demonstrating Samba's Active Directory Domain Controller support
 
 Run these commands to start the container
 ```
@@ -61,3 +61,10 @@ Now log out and log in with the samba administrator credentials (username: admin
 
 [This](http://vimeo.com/11527979#t=3m15s) is a nice guide to join your Windows 7 client to the domain controller. Just make sure to have your docker container as the
 [primary DNS server for Windows](http://www.opennicproject.org/configure-your-dns/how-to-change-dns-servers-in-windows-7/).
+
+## TODO
+
+* [ ] NTP support
+* [ ] Backup support (Maybe mount Samba database folders as docker volumes)
+* [ ] How to implement redundancy (Samba cluster doesn't seem to be production ready yet)
+* [ ] Probably a lot more to make this robust enough for production use
