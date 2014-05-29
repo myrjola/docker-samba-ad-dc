@@ -18,7 +18,13 @@ ADD named.conf.options /etc/bind/named.conf.options
 RUN apt-get install -y samba smbclient krb5-kdc krb5-admin-server
 RUN rm /etc/samba/smb.conf
 RUN samba-tool domain provision --use-rfc2307 --domain=relexsamba --realm=relexsamba.relex.fi --server-role=dc --dns-backend=BIND9_DLZ
-cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
+RUN cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
+RUN apt-get install -y expect
+ADD kdb5_util_create.expect kdb5_util_create.expect
+RUN expect kdb5_util_create.expect # Create Kerberos database
+
+# Install rsyslog to get better logging of ie. bind9
+RUN apt-get install -y rsyslog
 
 RUN echo 'root:root' | chpasswd
 EXPOSE 22 53
