@@ -65,7 +65,7 @@ Now log out and log in with the samba administrator credentials (username: admin
 ## LDAP explorers
 
 I used [JXplorer](http://jxplorer.org/) to explore the LDAP-schema. To log in you need to input something like this:
-![JXplorer example][http://i.imgur.com/LniIp22.png]
+![JXplorer example](http://i.imgur.com/LniIp22.png)
 
 ## Resources
 I followed the guide on Samba's wiki pages https://wiki.samba.org/index.php/Samba_AD_DC_HOWTO
