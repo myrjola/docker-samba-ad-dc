@@ -3,12 +3,12 @@
 Run these commands to start the container
 ```
 docker build -t samba-ad-dc .
-docker run  -e "SAMBA_DOMAIN=smbdc1" -e "SAMBA_REALM=smbdc1.example.com" --name dc1 --dns 127.0.0.1 samba-ad-dc
+docker run  -e "SAMBA_DOMAIN=smbdc1" -e "SAMBA_REALM=smbdc1.example.com" --name dc1 --dns 127.0.0.1 -d samba-ad-dc
 ```
 You can of course change the domain and realm to your liking.
 
-You get the IP-address of the running machine by issuing `docker inspect dc1 | grep IPAddress` and the root password by
-running `docker logs dc1 2>&1 | head -3`. You should then be able to log in with SSH.
+You get the IP-address of the running machine by issuing `docker inspect dc1 | grep IPAddress` and the root user's
+password as well as other passwords by running `docker logs dc1 2>&1 | head -3`. You should then be able to log in with SSH.
 
 One fast check to see that Kerberos talks with Samba:
 ```
