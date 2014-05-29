@@ -59,7 +59,7 @@ Now log out and log in with the samba administrator credentials (username: admin
 
 ## Windows client
 
-[This](http://vimeo.com/11527979#t=3m15s) is a nice guide to join your Windows 7 client to the domain controller. Just make sure to have your docker container as the
+[This](http://vimeo.com/11527979#t=3m15s) is a nice guide to join your Windows 7 client to the DC. Just make sure to have your Docker container as the
 [primary DNS server for Windows](http://www.opennicproject.org/configure-your-dns/how-to-change-dns-servers-in-windows-7/).
 
 ## Resources
@@ -67,7 +67,8 @@ I followed the guide on Samba's wiki pages https://wiki.samba.org/index.php/Samb
 
 ## TODO
 
-* [ ] NTP support
+* [ ] NTP support seems to be important
 * [ ] Backup support (Maybe mount Samba database folders as docker volumes)
 * [ ] How to implement redundancy (Samba cluster doesn't seem to be production ready yet)
+* [ ] Verify that Bind9 Dynamically Loadable Zones (DLZ) work
 * [ ] Probably a lot more to make this robust enough for production use
