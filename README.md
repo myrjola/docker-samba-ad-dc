@@ -71,4 +71,5 @@ I followed the guide on Samba's wiki pages https://wiki.samba.org/index.php/Samb
 * [ ] Backup support (Maybe mount Samba database folders as docker volumes)
 * [ ] How to implement redundancy (Samba cluster doesn't seem to be production ready yet)
 * [ ] Verify that Bind9 Dynamically Loadable Zones (DLZ) work
+* [ ] Can this be used for UNIX logins as well?
 * [ ] Probably a lot more to make this robust enough for production use
