@@ -42,7 +42,7 @@ Name: smbdc1
 Host: smbdc1.example.com
 Port: 389 [ ] LDAPS
 Account: Administrator@smbdc1
-Password: *passwordhere*
+Password: *samba_admin_password_here*
 Base DN: CN=Users,DC=smbdc1,DC=example,DC=com
 LDAP filter:
 Timeout (in seconds):
@@ -61,6 +61,11 @@ Now log out and log in with the samba administrator credentials (username: admin
 
 [This](http://vimeo.com/11527979#t=3m15s) is a nice guide to join your Windows 7 client to the DC. Just make sure to have your Docker container as the
 [primary DNS server for Windows](http://www.opennicproject.org/configure-your-dns/how-to-change-dns-servers-in-windows-7/).
+
+## LDAP explorers
+
+I used [JXplorer](http://jxplorer.org/) to explore the LDAP-schema. To log in you need to input something like this:
+![JXplorer example][http://i.imgur.com/LniIp22.png]
 
 ## Resources
 I followed the guide on Samba's wiki pages https://wiki.samba.org/index.php/Samba_AD_DC_HOWTO
