@@ -11,7 +11,7 @@ RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin Yes/g' /etc/ssh/
 
 
 # Install bind9 dns server
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y bind9
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y bind9 dnsutils
 ADD named.conf.options /etc/bind/named.conf.options
 
 # Install samba and configure it to be an Active Directory Domain Controller
