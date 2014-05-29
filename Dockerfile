@@ -1,14 +1,26 @@
 FROM ubuntu:latest
-MAINTAINER martin.yrjola@relex.fi
+MAINTAINER Martin Yrjölä <martin.yrjola@relex.fi>
 
 # Setup ssh and install supervisord
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y openssh-server supervisor
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin Yes/g' /etc/ssh/sshd_config
 
+
+# Install bind9 dns server
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y bind9
+ADD named.conf.options /etc/bind/named.conf.options
+
+# Install samba and configure it to be an Active Directory Domain Controller
+RUN apt-get install -y samba smbclient krb5-kdc krb5-admin-server
+RUN rm /etc/samba/smb.conf
+RUN samba-tool domain provision --use-rfc2307 --domain=relexsamba --realm=relexsamba.relex.fi --server-role=dc --dns-backend=BIND9_DLZ
+cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
+
+RUN echo 'root:root' | chpasswd
+EXPOSE 22 53
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-EXPOSE 22
 CMD ["/usr/bin/supervisord"]
