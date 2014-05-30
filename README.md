@@ -38,7 +38,7 @@ Refresh the browser until the login page shows. Login with both username and pas
 
 ```
 Name: smbdc1
-Host: smbdc1.example.com
+Host: *samba_ad_dc_ip*
 Port: 389 [ ] LDAPS
 Account: Administrator@smbdc1
 Password: *samba_admin_password_here*
