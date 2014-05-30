@@ -29,8 +29,7 @@ Valid starting     Expires            Service principal
 
 Now you can test Redmine ldap login to the host.
 ```
-docker pull sameersbn/redmine:latest
-docker run --name redmine -d sameersbn/latest
+docker run --name redmine -d sameersbn/redmine:latest
 REDMINE_IP=$(docker inspect redmine | grep IPAddres | awk -F'"' '{print $4}')
 xdg-open "http://${REDMINE_IP}/auth_sources/new"
 ```
