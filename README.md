@@ -71,7 +71,8 @@ I followed the guide on Samba's wiki pages https://wiki.samba.org/index.php/Samb
 
 ## TODO
 
-* [ ] NTP support seems to be important
+* [X] xattr and acl support for docker containers
+* [ ] NTP support
 * [ ] Backup support (Maybe mount Samba database folders as docker volumes)
 * [ ] How to implement redundancy (Samba cluster doesn't seem to be production ready yet)
 * [ ] Verify that Bind9 Dynamically Loadable Zones (DLZ) work
