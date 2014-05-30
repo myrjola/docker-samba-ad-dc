@@ -3,7 +3,7 @@
 Run these commands to start the container
 ```
 docker build -t samba-ad-dc .
-docker run  -e "SAMBA_DOMAIN=smbdc1" -e "SAMBA_REALM=smbdc1.example.com" --name dc1 --dns 127.0.0.1 -d samba-ad-dc
+docker run --privileged -v ${PWD}/samba:/var/lib/samba  -e "SAMBA_DOMAIN=smbdc1" -e "SAMBA_REALM=smbdc1.example.com" --name dc1 --dns 127.0.0.1 -d samba-ad-dc
 ```
 You can of course change the domain and realm to your liking.
 
