@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER Martin Yrjölä <martin.yrjola@relex.fi>
+MAINTAINER Martin Yrjölä <martin.yrjola@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
