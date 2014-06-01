@@ -2,8 +2,8 @@
 
 set -e
 
-SAMBA_DOMAIN=${SAMBA_DOMAIN:-smbdc1}
-SAMBA_REALM=${SAMBA_REALM:-smbdc1.example.com}
+SAMBA_DOMAIN=${SAMBA_DOMAIN:-samdom}
+SAMBA_REALM=${SAMBA_REALM:-samdom.example.com}
 
 if [[ $SAMBA_HOST_IP ]]; then
     SAMBA_HOST_IP="--host-ip=${SAMBA_HOST_IP}"
