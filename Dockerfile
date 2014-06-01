@@ -31,9 +31,18 @@ ADD kdb5_util_create.expect kdb5_util_create.expect
 # Install rsyslog to get better logging of ie. bind9
 RUN apt-get install -y rsyslog
 
+# Create run directory for bind9
+RUN mkdir -p /var/run/named
+RUN chown -R bind:bind /var/run/named
+
+# Install sssd for UNIX logins to AD
+RUN apt-get install -y sssd sssd-tools
+ADD sssd.conf /etc/sssd/sssd.conf
+RUN chmod 0600 /etc/sssd/sssd.conf
+
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD init.sh /init.sh
 RUN chmod 755 /init.sh
-EXPOSE 22 53 389 88 135 139 138 445 464 3268 3269 53
+EXPOSE 22 53 389 88 135 139 138 445 464 3268 3269
 ENTRYPOINT ["/init.sh"]
 CMD ["app:start"]

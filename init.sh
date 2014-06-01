@@ -1,10 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
 SAMBA_DOMAIN=${SAMBA_DOMAIN:-smbdc1}
 SAMBA_REALM=${SAMBA_REALM:-smbdc1.example.com}
-SAMBA_HOST_IP=${SAMBA_HOST_IP:-127.0.0.1}
+
+if [[ $SAMBA_HOST_IP ]]; then
+    SAMBA_HOST_IP="--host-ip=${SAMBA_HOST_IP}"
+fi
 
 appSetup () {
     touch /alreadysetup
@@ -22,9 +25,13 @@ appSetup () {
     rm -f /etc/samba/smb.conf
     rm -rf /var/lib/samba/private/*
     samba-tool domain provision --use-rfc2307 --domain=$SAMBA_DOMAIN --realm=$SAMBA_REALM --server-role=dc\
-      --dns-backend=BIND9_DLZ --adminpass=$SAMBA_ADMIN_PASSWORD --host-ip=$SAMBA_HOST_IP
+      --dns-backend=BIND9_DLZ --adminpass=$SAMBA_ADMIN_PASSWORD $SAMBA_HOST_IP
     cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
-    expect kdb5_util_create.expect # Create Kerberos database
+    # Create Kerberos database
+    expect kdb5_util_create.expect
+    # Export kerberos keytab for use with sssd
+    samba-tool domain exportkeytab /etc/krb5.keytab --principal ${HOSTNAME}\$
+    sed -i "s/SAMBA_DOMAIN/${SAMBA_DOMAIN}/" /etc/sssd/sssd.conf
 }
 
 appStart () {
