@@ -31,7 +31,7 @@ appSetup () {
     expect kdb5_util_create.expect
     # Export kerberos keytab for use with sssd
     samba-tool domain exportkeytab /etc/krb5.keytab --principal ${HOSTNAME}\$
-    sed -i "s/SAMBA_DOMAIN/${SAMBA_DOMAIN}/" /etc/sssd/sssd.conf
+    sed -i "s/SAMBA_REALM/${SAMBA_REALM}/" /etc/sssd/sssd.conf
 }
 
 appStart () {
