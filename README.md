@@ -90,7 +90,9 @@ docker run --privileged -p 53:53 -p 53:53/udp -p 88:88 -p 88:88/udp -p 135:135 -
 ```
 
 The problem is that the port range 1024 and upwards are used for dynamic RPC-calls, luckily Samba goes through them in
-order, so the first 20 or so should suffice for testing purposes. Windows complains otherwise that "The RPC server is unavailable".
+order, so the first 20 or so should suffice for testing purposes. Windows complains otherwise that "The RPC server is
+unavailable". It's also possible to eliminate long command line parameters by using `$(for port in $(seq 135 139); do
+echo -n "-p $port:$port "; done;)` instead.
 
 ## TODO
 
