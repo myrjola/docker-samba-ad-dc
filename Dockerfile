@@ -3,7 +3,7 @@ MAINTAINER Martin Yrjölä <martin.yrjola@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-VOLUME ["/var/lib/samba"]
+VOLUME ["/var/lib/samba", "/etc/samba"]
 
 # Setup ssh and install supervisord
 RUN apt-get update
