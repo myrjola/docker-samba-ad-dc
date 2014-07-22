@@ -10,7 +10,7 @@ if [[ $SAMBA_HOST_IP ]]; then
 fi
 
 appSetup () {
-    touch /alreadysetup
+    touch /etc/samba/.alreadysetup
 
     # Generate passwords
     ROOT_PASSWORD=$(pwgen -c -n -1 12)
@@ -35,7 +35,7 @@ appSetup () {
 }
 
 appStart () {
-    [ -f /alreadysetup ] && echo "Skipping setup..." || appSetup
+    [ -f /etc/samba/.alreadysetup ] && echo "Skipping setup..." || appSetup
 
     # Start the services
     /usr/bin/supervisord
