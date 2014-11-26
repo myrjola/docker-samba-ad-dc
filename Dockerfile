@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:12.04.5
 MAINTAINER Martin Yrjölä <martin.yrjola@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
