@@ -1,5 +1,7 @@
 # Docker container demonstrating Samba's Active Directory Domain Controller (AD DC) support
 
+This repository is unmaintained. Check if one of the forks are up to date.
+
 Run these commands to start the container
 ```
 docker build -t samba-ad-dc .
